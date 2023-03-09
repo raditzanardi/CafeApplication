@@ -30,7 +30,7 @@ public class CafeApplication {
 			 ingredients2.add("Milk");
 			 ingredients2.add("Syrup");
 			 ingredients2.add("Espresso");
-			 ingredients2.add("Caramel sauce");
+			 ingredients2.add("Caramel");
 			 
 			 ArrayList<String> ingredients3 = new ArrayList<String>();
 			 ingredients3.add("Milk");
