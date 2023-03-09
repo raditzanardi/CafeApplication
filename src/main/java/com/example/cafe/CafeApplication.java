@@ -40,7 +40,7 @@ public class CafeApplication {
 			 ingredients4.add("White bread");
 			 ingredients4.add("Butter"); 
 			 ingredients4.add("Ham slices"); 
-			 ingredients4.add("Ceese"); 
+			 ingredients4.add("Cheese"); 
 			 ingredients4.add("Hot sauce"); 
 			 
 			menuRepo.save(new Menu("Black Coffee", 1.99, ingredients1 ));
