@@ -1,6 +1,6 @@
 package com.example.cafe.model;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.cafe.model.Menu;
 import com.example.cafe.model.MenuRepository;
+import com.example.cafe.model.ProfileRepository;
+import com.example.cafe.model.Profile;
 
 @SpringBootApplication
 public class CafeApplication {
@@ -17,10 +19,8 @@ public class CafeApplication {
 		SpringApplication.run(CafeApplication.class, args);
 	}
 	
-	
-	
 	@Bean
-	ApplicationRunner init(MenuRepository menuRepo) {
+	ApplicationRunner init(MenuRepository menuRepo, ProfileRepository profileRepo) {
 		return args -> {
 			
 			ArrayList<String> ingredients1 = new ArrayList<String>();
@@ -48,7 +48,14 @@ public class CafeApplication {
 			menuRepo.save(new Menu("Latte", 3.99, ingredients3));
 			menuRepo.save(new Menu("Ham Sandwich", 6.99, ingredients4));
 			
+			profileRepo.save(new Profile("profile1 full name", "profile1", "email@email.com", "123 street", "123456", "123-456-7890"));
+			profileRepo.save(new Profile("profile2 full name", "profile2", "email@email.com", "123 street", "123456", "123-456-7890"));
+
+
 			menuRepo.findAll().forEach(System.out::println);
+			profileRepo.findAll().forEach(System.out::println);
+
+		
 		};
 	}
 
