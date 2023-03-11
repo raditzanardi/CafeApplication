@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MenuRepository extends JpaRepository<Menu, Long> {
 	List<Menu> findByItem (String item);
+	List<Menu> findByType (String type);
 	List<Menu> findByPrice (double price);
 	List<Menu> findAllByIngredientsIn (ArrayList<String> ingredients);
 }

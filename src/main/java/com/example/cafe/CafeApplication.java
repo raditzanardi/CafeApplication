@@ -43,10 +43,10 @@ public class CafeApplication {
 			 ingredients4.add("Cheese"); 
 			 ingredients4.add("Hot sauce"); 
 			 
-			menuRepo.save(new Menu("Black Coffee", 1.99, ingredients1 ));
-			menuRepo.save(new Menu("Caramel Macchiato", 5.99, ingredients2));
-			menuRepo.save(new Menu("Latte", 3.99, ingredients3));
-			menuRepo.save(new Menu("Ham Sandwich", 6.99, ingredients4));
+			menuRepo.save(new Menu("Black Coffee", 1.99, "Beverage", ingredients1 ));
+			menuRepo.save(new Menu("Caramel Macchiato", 5.99, "Beverage", ingredients2));
+			menuRepo.save(new Menu("Latte", 3.99, "Beverage", ingredients3));
+			menuRepo.save(new Menu("Ham Sandwich", 6.99, "Food", ingredients4));
 			
 			profileRepo.save(new Profile("profile1 full name", "profile1", "email@email.com", "123 street", "123456", "123-456-7890"));
 			profileRepo.save(new Profile("profile2 full name", "profile2", "email@email.com", "123 street", "123456", "123-456-7890"));

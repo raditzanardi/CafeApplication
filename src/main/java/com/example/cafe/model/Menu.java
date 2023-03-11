@@ -23,6 +23,17 @@ public class Menu {
 	@Column(name="price")
 	private double price;
 	
+	@Column(name="type")
+	private String type;
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Column(name="ingredients")
 	private ArrayList<String> ingredients;
 	
@@ -30,9 +41,10 @@ public class Menu {
 		
 	}
 	
-	public Menu(String item, double price, ArrayList<String> ingredients) {
+	public Menu(String item, double price, String type, ArrayList<String> ingredients) {
 		this.item = item;
 		this.price = price;
+		this.type = type;
 		this.ingredients = ingredients;
 	}
 

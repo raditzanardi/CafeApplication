@@ -24,13 +24,14 @@ public class MenuController {
 	MenuRepository menuRepo;
 	
 	@GetMapping("/menu")
-	public ResponseEntity<List<Menu>> getAllMenu(@RequestParam(required = false)String item){
+	public ResponseEntity<List<Menu>> getAllMenu(@RequestParam(required = false)String item, String type){
 		try {
 			List<Menu> menu = new ArrayList<Menu>();
-			if(item == null) {
+			if(item == null && type == null) {
 				menuRepo.findAll().forEach(menu::add);
 			}else {
 				menuRepo.findByItem(item).forEach(menu::add);
+				menuRepo.findByType(type).forEach(menu::add);
 			}
 			if(menu.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
