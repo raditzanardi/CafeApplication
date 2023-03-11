@@ -11,5 +11,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
 	List<Profile> findByAddress (String address);
 	List<Profile> findByPassword (String password);
 	List<Profile> findByPhoneNumber (String phoneNumber);
-	List<Profile> findByFullNameContaining (String fullName);*/
+	List<Profile> findByFullNameContaining (String fullName);
 }

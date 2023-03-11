@@ -24,7 +24,7 @@ import com.example.cafe.model.ProfileRepository;
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
-public class ProfileController {
+public class ProfilesController {
 	@Autowired
 	ProfileRepository profileRepo;
 	
@@ -102,5 +102,5 @@ public class ProfileController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}*/
+	}
 }
