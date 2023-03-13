@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,7 +28,7 @@ import com.example.cafe.model.ProfileRepository;
 public class ProfilesController {
 	@Autowired
 	ProfileRepository profileRepo;
-	
+
 	@GetMapping("/profiles")
 	public ResponseEntity<List<Profile>> getAllProfiles(@RequestParam(required = false)String fullName){
 		try {
@@ -45,7 +46,7 @@ public class ProfilesController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@GetMapping("/profiles/{id}")
 	public ResponseEntity<Profile> getProfileById(@PathVariable("id") long id) {
 		Optional<Profile> profileData = profileRepo.findById(id);
@@ -65,42 +66,78 @@ public class ProfilesController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	@PutMapping("/profiles/{id}")
-	public ResponseEntity<Profile> updateProfile(@PathVariable("id") long id, @RequestBody Profile profile) {
+	
+	@PatchMapping("profiles/{id}/fullname")
+	public ResponseEntity<Profile> updateProfileFullName(@PathVariable("id") long id,@RequestBody Profile profile) {
 		Optional<Profile> profileData = profileRepo.findById(id);
-
 		if (profileData.isPresent()) {
 			Profile _profile = profileData.get();
 			_profile.setFullName(profile.getFullName());
-			_profile.setUserName(profile.getUserName());
-			_profile.setEmail(profile.getEmail());
-			_profile.setAddress(profile.getAddress());
-			_profile.setPassword(profile.getPassword());
-			_profile.setPhoneNumber(profile.getPhoneNumber());
-
 			return new ResponseEntity<>(profileRepo.save(_profile), HttpStatus.OK);
-		} else {
+
+		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	@DeleteMapping("/profiles/{id}")
-	public ResponseEntity<HttpStatus> deleteProfile(@PathVariable("id") long id) {
-		try {
-			profileRepo.deleteById(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	@PatchMapping("profiles/{id}/username")
+	public ResponseEntity<Profile> updateProfileUserName(@PathVariable("id") long id,@RequestBody Profile profile) {
+		Optional<Profile> profileData = profileRepo.findById(id);
+		if (profileData.isPresent()) {
+			Profile _profile = profileData.get();
+			_profile.setUserName(profile.getUserName());
+			return new ResponseEntity<>(profileRepo.save(_profile), HttpStatus.OK);
+
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	//=========================================
-	//Is it needed?
-	@DeleteMapping("/profiles")
-	public ResponseEntity<HttpStatus> deleteAllProfiles() {
-		try {
-			profileRepo.deleteAll();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	@PatchMapping("profiles/{id}/email")
+	public ResponseEntity<Profile> updateProfileEmail(@PathVariable("id") long id,@RequestBody Profile profile) {
+		Optional<Profile> profileData = profileRepo.findById(id);
+		if (profileData.isPresent()) {
+			Profile _profile = profileData.get();
+			_profile.setEmail(profile.getEmail());
+			return new ResponseEntity<>(profileRepo.save(_profile), HttpStatus.OK);
+
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	@PatchMapping("profiles/{id}/address")
+	public ResponseEntity<Profile> updateAddress(@PathVariable("id") long id,@RequestBody Profile profile) {
+		Optional<Profile> profileData = profileRepo.findById(id);
+		if (profileData.isPresent()) {
+			Profile _profile = profileData.get();
+			_profile.setAddress(profile.getAddress());
+			return new ResponseEntity<>(profileRepo.save(_profile), HttpStatus.OK);
+
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	@PatchMapping("profiles/{id}/password")
+	public ResponseEntity<Profile> updatePassword(@PathVariable("id") long id,@RequestBody Profile profile) {
+		Optional<Profile> profileData = profileRepo.findById(id);
+		if (profileData.isPresent()) {
+			Profile _profile = profileData.get();
+			_profile.setPassword(profile.getPassword());
+			return new ResponseEntity<>(profileRepo.save(_profile), HttpStatus.OK);
+
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	@PatchMapping("profiles/{id}/phonenumber")
+	public ResponseEntity<Profile> updatePhoneNumber(@PathVariable("id") long id,@RequestBody Profile profile) {
+		Optional<Profile> profileData = profileRepo.findById(id);
+		if (profileData.isPresent()) {
+			Profile _profile = profileData.get();
+			_profile.setPhoneNumber(profile.getPhoneNumber());
+			return new ResponseEntity<>(profileRepo.save(_profile), HttpStatus.OK);
+
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 }

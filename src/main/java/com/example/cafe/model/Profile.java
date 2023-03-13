@@ -1,9 +1,14 @@
 package com.example.cafe.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,7 +29,20 @@ public class Profile {
 	private String password;
 	@Column(name="phoneNumber")
 	private String phoneNumber;
-
+	
+	//==========================================
+	//One to Many relationship
+	/*
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	private Set<PaymentMethod> methods = new HashSet<>();
+	
+	public void addPaymentMethod(PaymentMethod method) {
+		this.methods.add(method);
+		method.setCourse(this);
+	}*/
+	//==========================================
+	// Constructors
 	public Profile() {}
 	public Profile(String fullName, String userName, String email, String address, String password, String phoneNumber) {
 
@@ -35,6 +53,15 @@ public class Profile {
 		this.password = password;
 		this.phoneNumber = phoneNumber;
 	}
+	//==========================================
+	// Getters and Setters
+	/*
+	public Set<PaymentMethod> getPaymentMethods(){
+		return methods;
+	}
+	public void setPaymentMethods(Set<PaymentMethod> methods) {
+		this.methods = methods;
+	}*/
 	public long getId() {
 		return id;
 	}
