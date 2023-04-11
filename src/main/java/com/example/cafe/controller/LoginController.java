@@ -34,11 +34,15 @@ public class LoginController {
 				if (password.equals(loginRequest.getPassword())) {
 					return new ResponseEntity<>(profileData.get(), HttpStatus.OK);
 				}
+				else {
 				MessageResponse msg = new MessageResponse("Incorrect password");
 				return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+				}
 			}
-			MessageResponse msg = new MessageResponse("No such a student");
-			return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+			else {
+				MessageResponse msg = new MessageResponse("No such a profile");
+				return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+			}
 		} catch (Exception e) {
 			MessageResponse msg = new MessageResponse("Server Error");
 			return new ResponseEntity<>(msg, HttpStatus.INTERNAL_SERVER_ERROR);
