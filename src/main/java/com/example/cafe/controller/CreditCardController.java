@@ -23,7 +23,7 @@ import com.example.cafe.model.CreditCardRepository;
 import com.example.cafe.model.Profile;
 
 
-@CrossOrigin(origins="http:localhost:8081")
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/creditcards")
 public class CreditCardController {
